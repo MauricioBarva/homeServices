@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="login">
+        <span *ngIf="error=='true'" [ngStyle]="{'color':'red'}">Verifique los datos</span>
+        <h1>{{title}}</h1>
+        <div class="form-login">
+            <form #formEntrar='ngForm' id="env" (ngSubmit)="comprobar(userLogin.value,passwordLogin.value)">
+                <p>
+                    <input type="text" #userLogin name="userLogin" placeholder="Usuario" required>
+                </p>
+                <p>
+                    <input type="password" #passwordLogin name="passwordLogin" placeholder="Contraseña" required>
+                </p>
+
+
+                <input type="submit" value="Entrar">
+
+            </form>
+            <p class="redirigir-registrarse">
+                <a [routerLink]="['/sign-in']">Quiero ser cliente</a>
+                <a [routerLink]="['/sign-in-worker']">Quiero trabajar </a>
+            </p>
+        </div>
+    </div>
+</div>
+<button class="home-button" [routerLink]="['/']"><img src="../../../assets/img/icono1.png" title="Ir al inicio" alt="img ir al inicio"></button>

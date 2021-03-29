@@ -1,0 +1,124 @@
+<div *ngIf="user && user.status">
+    <!--Navegador-->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark" *ngIf="user">
+        <a class="navbar-brand" [routerLink]="['/session-started/',user._id]"><img title="Imagen de perfil" [ngStyle]="{'width':'43px','border-radius':'99999px'}" src="{{url+'get-image/'+user.image}}"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/session-started/',user._id]">Solicitar servicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/session-started/services/',user._id]">Mis servicios</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" [routerLink]="['/session-started/update-information',user._id]">Actualizar información</a>
+                        <a class="dropdown-item" [ngStyle]="{'cursor':'pointer'}" data-toggle="modal" data-target="#sugerencia">Dar una sugerencia</a>
+
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" [ngStyle]="{'cursor':'pointer'}" (click)="signOff()">Cerrar sesión</a>
+                    </div>
+                </li>
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="¿Qué estas buscando?" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+        </div>
+    </nav>
+
+    <!--main-->
+    <section>
+        <div class="actualizar-datos">
+            <div class="formulario">
+                <h2>{{title}}</h2>
+
+                <form #createUser='ngForm' (ngSubmit)='saveUser(createUser)' *ngIf='user'>
+
+                    <label for="username">Nombre de usuario</label>
+                    <input class="form-control" type="text" #username='ngModel' id="username" readonly name="username" [(ngModel)]='user.user' placeholder="Usuario" required [ngClass]="{'requerido': username.touched && !user.user}">
+
+                    <label for="nombre">Nombre</label>
+                    <input class="form-control" type="text" id="nombre" #name='ngModel' name="name" [(ngModel)]='user.name' placeholder="Nombre" required [ngClass]="{'requerido': name.touched && !user.name}">
+
+                    <label for="apellido">Apellido</label>
+                    <input class="form-control" type="text" id="apellido" #surname='ngModel' name="surname" [(ngModel)]='user.surname' placeholder="Apellidos" required [ngClass]="{'requerido': surname.touched && !user.surname}">
+
+                    <label for="identification">Identification</label>
+                    <input class="form-control" type="text" id="identification" #identification='ngModel' name="identification" [(ngModel)]='user.identification' placeholder="Cédula" required [ngClass]="{'requerido': identification.touched && !user.identification}">
+
+                    <label for="birthdate">Fecha de nacimiento</label>
+                    <input class="form-control" type="date" id="birthdate" min="1940-12-31" #birthdate='ngModel' name="birthdate" [(ngModel)]='user.birthdate' placeholder="Fecha de nacimiento" required [ngClass]="{'requerido': birthdate.touched && !user.birthdate}">
+
+                    <label for="city">Ciudad</label>
+                    <input class="form-control" type="text" id="city" #city='ngModel' name="city" [(ngModel)]='user.city' placeholder="Ciudad" required [ngClass]="{'requerido': city.touched && !user.city}">
+
+                    <label for="address">Direccion</label>
+                    <input class="form-control" type="text" #address='ngModel' name="address" id="address" [(ngModel)]='user.address' placeholder="Dirección" required [ngClass]="{'requerido': address.touched && !user.address}">
+
+
+                    <label class="col-sm-2 col-form-label" for="imagen">Imagen de perfil</label>
+                    <div *ngIf="user.image">
+                        <img [ngStyle]="{'width':'45px','border-radius':'99999px','margin-bottom':'10px'}" src="{{url+'get-image/'+user.image}}" title="Foto de perfil actual">
+                    </div>
+                    <input class="form-control-file" type="file" #imagen='ngModel' name="imagen" id="imagen" [(ngModel)]='user.image' (change)="fileChangeEvent($event)">
+
+                    <label for="cellphone">Celular</label>
+                    <input class="form-control" type="number" id="cellphone" #cellphone='ngModel' name="cellphone" [(ngModel)]='user.cellphone' placeholder="Celular" required [ngClass]="{'requerido': cellphone.touched && !user.cellphone}">
+
+                    <label for="password">Contraseña</label>
+                    <input class="form-control" type="password" id="password" #password='ngModel' name="password" [(ngModel)]='user.password' placeholder="Contraseña" required [ngClass]="{'requerido': password.touched && !user.password}">
+
+                    <label for="password2">Repetir contraseña</label>
+                    <input class="form-control" type="password" id="password2" name="password2" #password2='ngModel' [(ngModel)]='password2.password' placeholder="Repetir Contraseña" required [ngClass]="{'requerido': password2.touched && !password2.password}">
+                    <span *ngIf='status == "false"' [ngStyle]="{'color':'red', 'display':'block'}">Las contraseñas no coinciden</span>
+
+                    <span *ngIf='validar' [ngStyle]="{'color':'green', 'display':'block','font-size':'16px','padding-top':'40px'}">Información actualizada exitosamente!!</span>
+                    <p>
+                        <input class="btn btn-primary" type="submit" value="Actualizar" [disabled]='!createUser.form.valid' (click)="comprobar(user.password,password2.password)">
+                    </p>
+                </form>
+
+
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="sugerencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nueva sugerencia</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <form #enviarSugerencia='ngForm' (ngSubmit)="sendSuggestion(enviarSugerencia)">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Asunto:</label>
+                            <input type="text" #asunto='ngModel' name="asunto" [(ngModel)]="suggestion.subject" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Mensaje:</label>
+                            <textarea class="form-control" #mensaje='ngModel' name="mensaje" [(ngModel)]="suggestion.message" id="message-text"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <span *ngIf="suggestionState" [ngStyle]="{'color':'green', 'display':'block','font-size':'16px','padding-right':'35px'}">¡Sugerencia enviada!</span>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <input type="submit" class="btn btn-primary" value="Enviar sugerencia">
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

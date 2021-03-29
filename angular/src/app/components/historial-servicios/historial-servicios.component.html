@@ -1,0 +1,178 @@
+<!--Navegador-->
+<div *ngIf="user && user.status">
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark" *ngIf="user">
+        <a class="navbar-brand" [routerLink]="['/session-started/',user._id]"><img title="Imagen de perfil" [ngStyle]="{'width':'43px','border-radius':'99999px'}" src="{{url+'get-image/'+user.image}}"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/session-started/',user._id]">Solicitar servicio</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/session-started/services/',user._id]">Mis servicios</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Opciones
+        </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" [routerLink]="['/session-started/update-information',user._id]">Actualizar información</a>
+                        <a class="dropdown-item" [ngStyle]="{'cursor':'pointer'}" data-toggle="modal" data-target="#sugerencia">Dar una sugerencia</a>
+
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" [ngStyle]="{'cursor':'pointer'}" (click)="signOff()">Cerrar sesión</a>
+                    </div>
+                </li>
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="¿Qué estas buscando?" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+        </div>
+    </nav>
+
+    <table class="table posicion-tabla">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id del servicio</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Servicio</th>
+                <th scope="col">Dinero</th>
+                <th scope="col">Trabajador</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody *ngFor='let i of users; index as indice'>
+            <tr>
+                <th scope="row">{{indice+1}}</th>
+                <td>{{i._id}}</td>
+                <td>{{i.user_address}}</td>
+                <td>{{i.description_service}}</td>
+                <td>{{i.skill_type}}</td>
+                <td>{{i.amount_money}}</td>
+                <td>{{i.worker_info}}</td>
+                <td>
+                    <button class="buttons" data-toggle="modal" data-target="#modalCenter" (click)="editarServicio(i._id)"><img src="../../../assets//img//editar.png" alt="editar" title="Editar"></button>
+                    <button class="buttons" data-toggle="modal" data-target="#modal-borrar" (click)="borrarServicio(i._id)"><img src="../../../assets//img//borrar.png" alt="borrar" title="Cancelar"></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--Editar modal-->
+    <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Actualizar datos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                </div>
+                <div class="modal-body">
+                    <div class="info-servicio" *ngIf='user && service'>
+                        <form #createService='ngForm' (ngSubmit)='saveService()'>
+                            <h4 [ngStyle]="{'margin-left':'20px'}">Información de envio</h4>
+                            <label for="nombre">Nombre</label>
+                            <input type="text" #nombre='ngModel' name="nombre" id="nombre" [(ngModel)]="user.name" readonly>
+
+                            <label for="apellido">Apellido</label>
+                            <input type="text" #apellido='ngModel' name="apellido" id="apellido" [(ngModel)]="user.surname" readonly>
+
+                            <label for="direccion">Dirección</label>
+                            <input type="text" #direccion='ngModel' name="direccion" id="direccion" [(ngModel)]="user.address" readonly>
+
+                            <label for="ciudad">Ciudad</label>
+                            <input type="text" #ciudad='ngModel' name="ciudad" id="ciudad" [(ngModel)]="user.city" readonly>
+                            <div class="detalles-editar">
+                                <h4>Detalles del servicio requerido</h4>
+                                <label for="habilidades">Habilidad requerida</label>
+                                <select #habilidades='ngModel' id="habilidades" name="select" [(ngModel)]="service.skill_type" (change)="cambio()" required>
+                                <option value="Carpinteria" selected>Carpinteria</option> 
+                                <option value="Pasear perro" >Pasear perro</option>
+                                <option value="Aseo hogar">Aseo hogar</option>
+                                <option value="Electricista">Electricista</option>
+                                <option value="Plomero">Plomero</option>
+                                <option value="Tecnico de televisores">Tecnico de televisores</option>
+                                <option value="Fumigador de animales">Fumigador de animales</option>
+                        </select>
+
+                                <label for="precio">Precio COP</label>
+                                <input type="text" #precio='ngModel' name="precio" id="precio" [(ngModel)]="service.amount_money" readonly>
+                                <label for="descripcion_servicio">Descripción</label>
+                                <textarea #descripcion_servicio='ngModel' name="descripcion_servicio" id="descripcion_servicio" [(ngModel)]="service.description_service" placeholder="Cuéntanos ¿Qué necesitas? " required></textarea>
+                            </div>
+
+
+                            <div class="modal-footer" [ngStyle]="{'margin-top':'20px','padding-top':'30px'}">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <input type="submit" class="btn btn-primary" value="Actualizar">
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Borrar modal-->
+    <div class="modal fade" id="modal-borrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle"><strong>Confirmación</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro de borrar el servicio? No se pueden deshacer los cambios
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" (click)="confirmacion()">Sí, estoy seguro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Sugerencia-->
+    <div class="modal fade" id="sugerencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nueva sugerencia</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form #enviarSugerencia='ngForm' (ngSubmit)="sendSuggestion(enviarSugerencia)">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Asunto:</label>
+                            <input type="text" #asunto='ngModel' name="asunto" [(ngModel)]="suggestion.subject" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Mensaje:</label>
+                            <textarea class="form-control" #mensaje='ngModel' name="mensaje" [(ngModel)]="suggestion.message" id="message-text"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <span *ngIf="suggestionState" [ngStyle]="{'color':'green', 'display':'block','font-size':'16px','padding-right':'35px'}">¡Sugerencia enviada!</span>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <input type="submit" class="btn btn-primary" value="Enviar sugerencia">
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

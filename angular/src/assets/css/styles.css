@@ -1,0 +1,732 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url('../img/1.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1300px;
+    height: auto;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.activo {
+    color: blue;
+}
+
+.inicio {
+    text-align: center;
+    height: 80vh;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.inicio button {
+    width: 30%;
+    border: 0;
+    outline: 0;
+    margin-right: 25px;
+    font-size: 19px;
+    cursor: pointer;
+    padding: 20px;
+    color: white;
+    transition: all ease .5s;
+    background: rgba(65, 65, 65);
+}
+
+.inicio button:hover {
+    transition: all ease .5s;
+    background: rgb(88, 112, 219);
+}
+
+.inicio a {
+    text-decoration: none;
+    padding: 20px;
+}
+
+.link-inicio {
+    padding-left: 55.5px;
+    padding-right: 55.5px;
+}
+
+.iniciar-sesion {
+    height: 20vh;
+}
+
+.registro {
+    height: 22vh;
+    margin-top: 20px;
+}
+
+.posicionador {
+    position: absolute;
+    left: 15%;
+    top: 30%;
+    width: 70%;
+}
+
+.inicio h1 {
+    color: #333;
+    font-size: 32px;
+    letter-spacing: 3px;
+    padding-top: 40px;
+}
+
+.registro h2,
+.iniciar-sesion h2 {
+    color: #444;
+    font-size: 26px;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+.requerido {
+    background: rgba(241, 58, 58, 0.13) !important;
+}
+
+.data {
+    width: inherit;
+    height: auto;
+    transition: all ease 0.5s;
+    padding-top: 50px;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.750);
+}
+
+.actualizar-datos {
+    width: 80%;
+    height: auto;
+    transition: all ease 0.5s;
+    padding-top: 50px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding-bottom: 10px;
+    text-align: center;
+    background: rgba(255, 255, 255);
+}
+
+
+/* .actualizar-datos input[type="text"]:read-only {
+    background: rgb(234, 234, 234);
+} */
+
+.actualizar-datos label {
+    margin-top: 10px;
+    color: #444;
+}
+
+.data input[type="text"],
+.data input[type="password"],
+.data select,
+.data input[type="date"],
+.data input[type="number"] {
+    width: 40.9%;
+    margin-right: 40px;
+    height: 25px;
+    margin-top: 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.formulario .form-control,
+.formulario .form-control-file {
+    width: 80% !important;
+    margin: 0 auto !important;
+}
+
+.formulario .btn {
+    width: 20% !important;
+    margin-top: 25px !important;
+}
+
+#date-woker {
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.data textarea {
+    width: 50.93%;
+    height: 105px;
+    margin-right: 40px;
+    padding: 10px 20px;
+    padding-left: 10px;
+    margin-top: 30px;
+    background: transparent;
+    border: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.login input[type="text"]:focus,
+.login input[type="password"]:focus {
+    background: rgba(231, 255, 122, 0.195);
+}
+
+.data input[type="text"]:focus,
+.data input[type="password"]:focus {
+    background: rgba(231, 255, 122, 0.195);
+}
+
+.data input[type="submit"] {
+    width: 70.9%;
+    height: 35px;
+    margin-top: 40px;
+    border-radius: 5px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.login {
+    background: rgba(65, 65, 65, 0.15);
+    width: 40%;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: 30px;
+    padding: 20px 20px;
+    border-radius: 6px;
+    transition: all ease 0.5s;
+    box-shadow: 0px 0px 5px #ccc;
+}
+
+.login h1 {
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 6px;
+    letter-spacing: 2px;
+    color: rgba(0, 0, 0, 0.568);
+    padding: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.login input[type="submit"] {
+    margin-top: 40px;
+    border: 0;
+    outline: 0;
+    padding: 10px;
+    cursor: pointer;
+    background: rgb(56, 56, 56);
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-size: 13px;
+    width: 68%;
+    color: white;
+}
+
+.login input[type="password"],
+.login input[type="text"] {
+    width: 90%;
+    margin-right: 40px;
+    margin-left: 20px;
+    height: 30px;
+    margin-top: 30px;
+    background: rgba(235, 235, 235, 0.825);
+    border-radius: 2px;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.456);
+    padding-bottom: 5px;
+}
+
+.form-login {
+    margin-top: 60px;
+    height: 70%;
+    box-sizing: border-box;
+}
+
+.form-login a {
+    text-decoration: none;
+    color: rgb(80, 109, 240);
+    margin-right: 20px;
+    font-size: 12px;
+    padding: 10px;
+    transition: 100ms;
+}
+
+.form-login a:hover {
+    background: rgba(204, 204, 204);
+    transition: 100ms;
+}
+
+.redirigir-registrarse {
+    margin-top: 80px;
+    text-transform: uppercase;
+}
+
+input[disabled] {
+    cursor: not-allowed !important;
+}
+
+.formulario span {
+    color: red;
+    font-size: 12px;
+}
+
+.formulario form {
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.formulario h1 {
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 6px;
+    letter-spacing: 3px;
+    color: rgb(51, 51, 51);
+    padding: 20px;
+    background: rgba(24, 70, 55, 0.207);
+}
+
+.datos-correctos {
+    background: rgba(24, 70, 55, 0.096);
+}
+
+.usuario-creado {
+    text-transform: uppercase;
+    color: white;
+    background: green;
+    padding: 5px;
+}
+
+.redirigir {
+    margin-top: 10px;
+    font-size: 11px;
+    line-height: 50px;
+    text-transform: uppercase;
+    list-style: none;
+    text-decoration: none;
+}
+
+.redirigir a {
+    border-radius: 2px;
+    padding: 10px;
+    color: rgb(102, 127, 235);
+    text-decoration: none;
+    transition: 100ms;
+}
+
+.redirigir a:hover {
+    transition: 100ms;
+    background: rgba(204, 204, 204, 0.26);
+}
+
+#error-component {
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 5px;
+    background: rgb(128, 107, 107);
+    text-align: center;
+    height: 90vh;
+}
+
+#error-component h1 {
+    background: #ccc;
+    text-transform: uppercase;
+    border: 1px solid black;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.info {
+    background: rgba(255, 0, 0, 0.288);
+    height: 90vh;
+}
+
+.info-usuario {
+    margin-top: 30px !important;
+    width: 80%;
+    height: inherit;
+    background: rgb(250, 250, 250);
+    margin: 0 auto;
+    padding: 20px 20px;
+    color: #333;
+    font-weight: bold;
+    border-radius: 6px;
+    box-shadow: 0px 0px 2px #ccc;
+    box-sizing: border-box;
+}
+
+.info-usuario img {
+    width: 13%;
+    max-width: 15%;
+}
+
+.info-usuario label {
+    text-align: center;
+    width: 16%;
+}
+
+.info-usuario input[type="text"],
+.info-usuario select {
+    width: 34%;
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+    outline: 0;
+}
+
+.info-usuario textarea {
+    display: block;
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+    outline: 0;
+}
+
+.info-usuario input[type="text"]:read-only {
+    background: rgb(234, 234, 234);
+}
+
+.info-usuario h4 {
+    margin-bottom: 24px !important;
+}
+
+.posicion-tabla {
+    width: 85%;
+    margin: 0 auto;
+    margin-top: 45px;
+    margin-bottom: 45px;
+    background: #fff;
+}
+
+.info-usuario input[type="submit"] {
+    margin: 0 auto;
+    width: 22%;
+    text-transform: uppercase;
+    background: #212529;
+    color: white;
+    font-weight: 600;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    padding: 7px;
+    font-size: 14px;
+    border-radius: 6px;
+    margin-top: 25px;
+}
+
+.info-usuario span {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    color: green;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.detalles {
+    border-top: 1px solid #80808042;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.detalles-editar {
+    border-top: 1px solid #80808042;
+    margin-top: 30px;
+}
+
+.pago {
+    padding: 25px;
+    border-top: 1px solid #80808042;
+    border-bottom: 1px solid #80808042;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.descripcion {
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 23px;
+    box-sizing: border-box;
+}
+
+.info-usuario input[type="submit"] {
+    display: block;
+}
+
+#error-component a {
+    display: block;
+    text-decoration: none;
+    font-size: 18px;
+    width: 25%;
+    margin: 0 auto;
+    margin-top: 200px;
+    color: black;
+    font-weight: 500;
+    padding: 10px;
+    background: #ccc;
+    text-transform: uppercase;
+    border: 1px solid black;
+}
+
+.home-button {
+    position: fixed;
+    cursor: pointer;
+    bottom: 0;
+    right: 0;
+    width: 5%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    height: 8vh;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: all ease .5s;
+}
+
+.home-button img {
+    height: 6vh;
+}
+
+.home-button:hover {
+    transition: all ease .5s;
+    transform: scale(1.1);
+}
+
+.buttons {
+    margin-top: 3px;
+    padding: 5px 5px;
+    margin-right: 5px;
+    margin-left: 17px;
+    border: 0;
+    border-radius: 6px;
+    outline: 0;
+    cursor: pointer;
+    transition: all ease .4s;
+}
+
+.buttons:hover {
+    transition: all ease .4s;
+    background: #21252941;
+}
+
+.info-servicio {
+    width: 100%;
+    height: inherit;
+    background: rgb(250, 250, 250);
+    margin: 0 auto;
+    padding: 20px 20px;
+    color: #333;
+    font-weight: bold;
+    border-radius: 6px;
+    box-shadow: 0px 0px 2px #ccc;
+    box-sizing: border-box;
+}
+
+.info-servicio label {
+    display: block;
+}
+
+.info-servicio input[type="text"],
+.info-servicio select,
+.info-servicio textarea {
+    width: 100%;
+    border: 0;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+    outline: 0;
+}
+
+.info-servicio select {
+    padding-left: 5px !important;
+}
+
+.info-servicio input[type="text"]:read-only {
+    background: rgb(234, 234, 234);
+}
+
+.table {
+    text-align: center !important;
+}
+
+.table tr,
+.table th,
+.table td {
+    border: 1px solid rgba(0, 0, 0, .2) !important;
+}
+
+.table td {
+    border: 1px solid rgba(0, 0, 0, .2) !important;
+    padding: 10px 20px;
+}
+
+.table tr:hover {
+    background: #e5e5e5;
+}
+
+@media screen and (max-width:960px) {
+    .data {
+        height: 100%;
+    }
+    .data input[type="text"],
+    .data input[type="password"],
+    .data select,
+    .data input[type="date"],
+    .data input[type="number"],
+    .data textarea {
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+    .registro h2,
+    .iniciar-sesion h2 {
+        font-size: 20px;
+        width: 100%;
+    }
+    .inicio button {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .iniciar-sesion {
+        height: 100%;
+    }
+    .registro {
+        height: 100%;
+    }
+    .posicionador {
+        top: 13%;
+        left: 0;
+        width: 100%;
+    }
+}
+
+.ui-menu {
+    width: 150px;
+}
+
+
+/*Media Querys*/
+
+@media screen and (max-width:1000px) {
+    .form-login a {
+        margin-right: 0px;
+        font-size: 12px;
+        display: block;
+        margin-top: 10px;
+        padding: 10px;
+    }
+    .login input[type="password"],
+    .login input[type="text"] {
+        width: 95%;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .login {
+        width: 80%;
+        margin: 0 auto;
+        padding: 0px 0px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .container {
+        width: 100%;
+        margin: 0 auto;
+        height: 100vh;
+        box-sizing: border-box;
+        padding: 0px;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+    .login {
+        width: 100%;
+        height: 100vh;
+        padding: 0px;
+    }
+    .data h1 {
+        width: 100%;
+        margin: 0px 0px;
+    }
+    #date-woker {
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .home-button {
+        bottom: 0;
+        right: 0;
+        width: 5%;
+        margin-right: 40px;
+        margin-bottom: 0px;
+    }
+    .info-usuario {
+        width: 100%;
+        padding: 0px 0px;
+    }
+    .info-usuario h4 {
+        width: 100%;
+        margin-left: 0px !important;
+        text-align: center;
+    }
+    .info-usuario input[type="text"],
+    .info-usuario label,
+    .info-usuario select,
+    .info-usuario textarea {
+        width: 100%;
+    }
+    .info-usuario input[type="submit"] {
+        width: 30%;
+    }
+    .descripcion {
+        width: 100%;
+        padding: 0px 0px;
+    }
+    .detalles {
+        margin: 0px 0px;
+        margin-top: 20px;
+        padding: 0px 0px;
+    }
+    .posicion-tabla {
+        margin: 0px 0px;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        overflow: scroll !important;
+    }
+    .formulario {
+        width: 100% !important;
+        margin: 0 auto;
+        margin: 0px 0px !important;
+        padding: 0px 0px !important;
+    }
+    .actualizar-datos {
+        width: 100% !important;
+        padding: 0px 0px !important;
+        padding: 0px 0px;
+    }
+    .formulario .btn {
+        width: 100% !important;
+        margin-top: 25px !important;
+    }
+    .formulario .form-control,
+    .formulario .form-control-file {
+        width: 100% !important;
+    }
+}

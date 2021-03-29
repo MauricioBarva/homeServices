@@ -1,0 +1,42 @@
+<div class="container" *ngIf='worker'>
+    <div class="data">
+
+        <div class="formulario">
+            <h1>{{title}}</h1>
+
+            <form #createWorker='ngForm' (ngSubmit)='saveWorker(createWorker)'>
+
+
+                <input type="text" #workername='ngModel' name="workername" [(ngModel)]='worker.user' placeholder="Usuario" required [ngClass]="{'requerido': workername.touched && !worker.user}">
+
+
+                <input type="text" #name='ngModel' name="name" [(ngModel)]='worker.name' placeholder="Nombre" required [ngClass]="{'requerido': name.touched && !worker.name}">
+
+                <input type="text" #surname='ngModel' name="surname" [(ngModel)]='worker.surname' placeholder="Apellidos" required [ngClass]="{'requerido': surname.touched && !worker.surname}">
+
+
+                <input type="text" #identification='ngModel' name="identification" [(ngModel)]='worker.identification' placeholder="Cédula" required [ngClass]="{'requerido': identification.touched && !worker.identification}">
+
+                <input type="password" #password='ngModel' name="password" [(ngModel)]='worker.password' placeholder="Contraseña" required [ngClass]="{'requerido': password.touched && !worker.password}">
+
+                <input type="password" name="password2" #password2='ngModel' [(ngModel)]='password2.password' placeholder="Repetir Contraseña" required [ngClass]="{'requerido': password2.touched && !password2.password}">
+
+                <input type="date" id="date-woker" min="1940-12-31" #birthdate='ngModel' name="birthdate" [(ngModel)]='worker.birthdate' placeholder="Fecha de nacimiento" required [ngClass]="{'requerido': birthdate.touched && !worker.birthdate}">
+
+
+                <textarea #skills='ngModel' name="skills" [(ngModel)]="worker.skills" placeholder="¿Por qué deberíamos contratarte?" required [ngClass]="{'requerido': skills.touched && !worker.skills}"></textarea>
+                <p>
+                    <span *ngIf='status == "false"' [ngStyle]="{'color':'red', 'display':'block'}">Las contraseñas no coinciden</span>
+                    <span *ngIf='workerCreated == "true"' [ngStyle]="{'color':'green', 'display':'block','font-size':'16px'}">Usuario creado exitosamente, ya puede iniciar sesión.</span>
+                    <input type="submit" value="Registrarme" [ngClass]="{
+                  'datos-correctos':createWorker.form.valid}" [disabled]='!createWorker.form.valid' (click)="comprobar(worker.password,password2.password)">
+                </p>
+            </form>
+            <p class="redirigir"><a [routerLink]="['/login-worker']">Inicie sesión</a></p>
+
+
+        </div>
+    </div>
+</div>
+
+<button class="home-button" [routerLink]="['/']"><img src="../../../assets/img/icono1.png" title="Ir al inicio" alt="img ir al inicio"></button>

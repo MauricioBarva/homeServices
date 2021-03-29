@@ -1,0 +1,51 @@
+<div class="container" *ngIf='user'>
+
+    <div class="data">
+
+        <div class="formulario">
+            <h1>{{title}}</h1>
+
+            <form #createUser='ngForm' (ngSubmit)='saveUser(createUser)'>
+
+
+                <input type="text" #username='ngModel' name="username" [(ngModel)]='user.user' placeholder="Usuario" required [ngClass]="{'requerido': username.touched && !user.user}">
+
+
+
+                <input type="text" #name='ngModel' name="name" [(ngModel)]='user.name' placeholder="Nombre" required [ngClass]="{'requerido': name.touched && !user.name}">
+
+                <input type="text" #surname='ngModel' name="surname" [(ngModel)]='user.surname' placeholder="Apellidos" required [ngClass]="{'requerido': surname.touched && !user.surname}">
+
+
+                <input type="text" #identification='ngModel' name="identification" [(ngModel)]='user.identification' placeholder="Cédula" required [ngClass]="{'requerido': identification.touched && !user.identification}">
+
+
+                <input type="date" min="1940-12-31" #birthdate='ngModel' name="birthdate" [(ngModel)]='user.birthdate' placeholder="Fecha de nacimiento" required [ngClass]="{'requerido': birthdate.touched && !user.birthdate}">
+
+
+                <input type="text" #city='ngModel' name="city" [(ngModel)]='user.city' placeholder="Ciudad" required [ngClass]="{'requerido': city.touched && !user.city}">
+
+
+                <input type="text" #address='ngModel' name="address" [(ngModel)]='user.address' placeholder="Dirección" required [ngClass]="{'requerido': address.touched && !user.address}">
+
+
+                <input type="number" #cellphone='ngModel' name="cellphone" [(ngModel)]='user.cellphone' placeholder="Celular" required [ngClass]="{'requerido': cellphone.touched && !user.cellphone}">
+
+                <input type="password" #password='ngModel' name="password" [(ngModel)]='user.password' placeholder="Contraseña" required [ngClass]="{'requerido': password.touched && !user.password}">
+
+                <input type="password" name="password2" #password2='ngModel' [(ngModel)]='password2.password' placeholder="Repetir Contraseña" required [ngClass]="{'requerido': password2.touched && !password2.password}">
+                <span *ngIf='status == "false"' [ngStyle]="{'color':'red', 'display':'block'}">Las contraseñas no coinciden</span>
+                <span *ngIf='userCreated == "true"' [ngStyle]="{'color':'green', 'display':'block','font-size':'16px','padding-top':'40px'}">Usuario creado exitosamente, ya puede iniciar sesión.</span>
+
+                <p>
+                    <input type="submit" value="Registrarme" [ngClass]="{
+                  'datos-correctos':createUser.form.valid}" [disabled]='!createUser.form.valid' (click)="comprobar(user.password,password2.password)">
+                </p>
+            </form>
+            <p class="redirigir"><a [routerLink]="['/login']">Inicie sesión</a></p>
+
+
+        </div>
+    </div>
+</div>
+<button class="home-button" [routerLink]="['/']"><img src="../../../assets/img/icono1.png" title="Ir al inicio" alt="img ir al inicio"></button>
